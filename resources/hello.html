@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="/resources/base.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>my web app</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>
+      Password Manager
+    </h1>
+    <h2>Sign up:</h2>
+    <div>
+      <form action="/store" method="POST">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password"><br><br>
+        <input type="submit" value="Register">
+      </form>
+    </div>
+    <br>
+    <div>
+      <h2>Fetch your password:</h2>
+      <form action="/fetch" method="POST">
+        <label for="inputfield">Username</label><br>
+        <input type="text" id="inputfield" name="username">
+        <input type="submit" value="Fetch">
+      </form>
+      {% if name is not none %}
+        {{name}} {{ password}}
+      {% endif %}
+    </div>
+  </body>
+</html>

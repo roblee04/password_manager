@@ -1,2 +1,5 @@
 Flask
 cryptography
+sqlalchemy
+sqlalchemy-cockroachdb
+psycopg2-binary

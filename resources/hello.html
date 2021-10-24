@@ -4,34 +4,88 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>my web app</title>
+    <title>Password Manager</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+
+    .bg {
+      /* The image used */
+      background-image: url("https://wallpaperaccess.com/full/1251666.jpg");
+
+      /* Full height */
+      height: 100%;
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    input[type=submit] {
+    border-radius: 5px;
+    border: 0;
+    width: 80px;
+    height:25px;
+    font-family: Tahoma;
+    background: #f4f4f4;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f4f4f4 1%, #ededed 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #f4f4f4), color-stop(100%, #ededed));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f4f4f4 1%, #ededed 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f4f4f4 1%, #ededed 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f4f4f4 1%, #ededed 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #f4f4f4 1%, #ededed 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#ededed', GradientType=0);
+    /* IE6-9 */
+}
+
+    </style>
   </head>
   <body>
-    <h1>
+    <div class="bg">
+    <div class="section-heading text-center">
+    <br>
+    <h1 class="display-4 font-weight-bold">
       Password Manager
     </h1>
-    <h2>Sign up:</h2>
-    <div>
-      <form action="/store" method="POST">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="password">Password:</label><br>
-        <input type="text" id="password" name="password"><br><br>
-        <input type="submit" value="Register">
-      </form>
+      <br>
+      <div>
+        <h2>Sign up:</h2>
+        <form action="/store" method="POST">
+          <label for="username">Username:</label><br>
+          <input type="text" id="username" name="username"><br>
+          <label for="password">Password:</label><br>
+          <input type="text" id="password" name="password"><br><br>
+          <input type="submit" value="Register">
+        </form>
+      </div>
+      <br>
+      <div>
+        <h2>Fetch your password:</h2>
+        <form action="/fetch" method="POST">
+          <label for="inputfield">Username:</label><br>
+          <input type="text" id="inputfield" name="username">
+          <input type="submit" value="Fetch">
+        </form>
+        {% if name is not none %}
+          {{name}} {{ password}}
+        {% endif %}
+      </div>
+      <blockquote class="blockquote text-center">
+        <br><br>
+        <p class="mb-0">Storing and encrypting your passwords is cool.</p>
+        <footer class="blockquote-footer">Someone cool at <cite title="Source Title">Cal Hacks 8.0</cite></footer>
+      </blockquote>
     </div>
-    <br>
-    <div>
-      <h2>Fetch your password:</h2>
-      <form action="/fetch" method="POST">
-        <label for="inputfield">Username</label><br>
-        <input type="text" id="inputfield" name="username">
-        <input type="submit" value="Fetch">
-      </form>
-      {% if name is not none %}
-        {{name}} {{ password}}
-      {% endif %}
     </div>
   </body>
 </html>

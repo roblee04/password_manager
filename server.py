@@ -32,8 +32,11 @@ class Database:
     def fetch(self, name: str) -> UserData:
             return self.session.query(UserData).filter(UserData.username == name).one()
 
-    def update(self, name: str, new_password: str):
-        pass
+    def update(self, name: str, new_encrypted_password: str, new_encryption_key: str):
+        user = self.session.query(UserData).filter(UserData.username == name).one()
+        user.encrypted_password = new_encrypted_password
+        user.encryption_key = new_encryption_key
+        self.session.commit()
 
 app = Flask(__name__, template_folder="resources")
 database = Database()
@@ -55,12 +58,11 @@ def fetch():
     password = f.decrypt(encrypted_password).decode()
 
 
-    # encryption_key = Fernet.generate_key()
-    # f = Fernet(encryption_key)
-    # password_encrypted = f.encrypt(str.encode(password))
-    # userdata = UserData(password_encrypted, encryption_key)
-    # database.store(user, userdata)
-    # print(password_encrypted)
+    encryption_key = Fernet.generate_key().decode()
+    f = Fernet(encryption_key)
+    password_encrypted = f.encrypt(str.encode(password)).decode()
+    database.update(user, password_encrypted, encryption_key)
+    print(password_encrypted)
 
     url = url_for("hello_world", name=user, password=password)
     return redirect(url)

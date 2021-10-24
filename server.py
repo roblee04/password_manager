@@ -78,12 +78,6 @@ def store():
     database.store(userdata)
     return redirect(request.referrer)
 
-@app.route("/showdb")
-def showdb():
-    print(database.entities)
-    return "see console"
-
-
 @app.route('/resources/<path>')
 def send_resource(path):
     return send_from_directory('resources', path)
